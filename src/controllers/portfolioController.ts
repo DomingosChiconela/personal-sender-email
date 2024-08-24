@@ -15,7 +15,7 @@ const portfolioSchema = z.object({
 
 
 
-const portfolioEmail = async(req: Request, res: Response)=>{
+export const portfolioEmail = async(req: Request, res: Response)=>{
    
 
     
@@ -28,7 +28,7 @@ const portfolioEmail = async(req: Request, res: Response)=>{
     const subject = `Contato do Portfólio [${validation.data.name}]`
     const html =   `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; border: 1px solid #ddd; border-radius: 10px;">
-      <h2 style="text-align: center; color: #01BAEF;">Nova Mensagem de Contato</h2>
+      <h2 style="text-align: center; color: #017ff5;">Nova Mensagem de Contato</h2>
       <p style="font-size: 16px; color: #333;">
         <strong>Nome:</strong> ${validation.data.name}
       </p>
@@ -47,6 +47,8 @@ const portfolioEmail = async(req: Request, res: Response)=>{
   `
   try{
         await sendEmail(subject,html)
+
+        res.status(200).json({message:"email sent"})
 
     }catch(error){
 
