@@ -2,7 +2,7 @@ import express, { urlencoded } from "express"
 import * as dotenv  from "dotenv"
 import cors from "cors"
 import { portfolioRoute } from "./routes/portfolioRoute"
-
+import { Request,Response } from "express";
 
 
 
@@ -16,6 +16,11 @@ app.use(cors())
 app.use(urlencoded({extended:true}))
 
 app.use("/api/portfolio",portfolioRoute)
+app.get("/",async(req: Request, res: Response)=>{
+
+    res.status(200).send("deploy succefuly")
+    
+})
 
 
 
